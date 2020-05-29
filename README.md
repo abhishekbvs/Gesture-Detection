@@ -26,7 +26,7 @@ The process of counting the fingers has five intermediate steps
   + Finding the center of the palm using t he extreme points.
   + Constructing a cricle around the hand with centre of the palm as origin.
   + Bitwise AND between the thresholded hand image and the circle(also known as ROI - Region Of Interest) 
-  ![Steps](https://github.com/abhishekbvs/Gesture-Detection/blob/master/image1.png)
+  ![Steps](https://github.com/abhishekbvs/Gesture-Detection/blob/master/static/image1.png)
 
 ## Installation
 
@@ -52,7 +52,7 @@ The process of counting the fingers has five intermediate steps
     ```
       $ pip install -r requirements.txt
     ```
-6. Run the FLask application
+6. Run the Flask application
     ```
       $ python app.py
     ```

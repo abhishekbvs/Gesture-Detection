@@ -13,44 +13,46 @@ class VideoCamera(object):
         self.video.release()
 
     def get_frame(self):
+        try:
+            accumWeight = 0.5
+            calibrated = False
+            top, right, bottom, left = 10, 350, 225, 590
+            grabbed, frame = self.video.read()
+            frame = imutils.resize(frame, height=530)
+            frame = cv2.flip(frame, 1)
+            clone = frame.copy()
+            thresholded = np.zeros((265,295, 3), np.uint8)
+            number = np.zeros((265,295, 3), np.uint8)
+            (height, width) = frame.shape[:2]
+            roi = frame[top:bottom, right:left]
+            gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+            gray = cv2.GaussianBlur(gray, (7, 7), 0)
 
-        accumWeight = 0.5
-        calibrated = False
-        top, right, bottom, left = 10, 350, 225, 590
-        grabbed, frame = self.video.read()
-        frame = imutils.resize(frame, height=530)
-        frame = cv2.flip(frame, 1)
-        clone = frame.copy()
-        thresholded = np.zeros((265,295, 3), np.uint8)
-        number = np.zeros((265,295, 3), np.uint8)
-        (height, width) = frame.shape[:2]
-        roi = frame[top:bottom, right:left]
-        gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-        gray = cv2.GaussianBlur(gray, (7, 7), 0)
+            if self.num_frames < 30:
+                
+                self.run_avg(gray, accumWeight)
+                if self.num_frames == 1:
+                    print("[STATUS] please wait! calibrating...")
+                elif self.num_frames == 29:
+                    print("[STATUS] calibration successfull...")
+                self.num_frames += 1
+            else:
 
-        if self.num_frames < 30:
+                hand = self.segment(gray)
+                if hand is not None:
+                    (thresholded, segmented) = hand
+                    cv2.drawContours(clone, [segmented + (right, top)], -1, (0, 0, 255))
+                    fingers = self.count(thresholded, segmented)
+                    thresholded = imutils.resize(thresholded, height=265)
+                    thresholded = cv2.cvtColor(thresholded, cv2.COLOR_GRAY2BGR)
+                    cv2.putText(number, str(fingers), (125,150), cv2.FONT_HERSHEY_DUPLEX, 3, (255,255,255), 2)
+
+            cv2.rectangle(clone, (left, top), (right, bottom), (0,255,0), 2)
             
-            self.run_avg(gray, accumWeight)
-            if self.num_frames == 1:
-                print("[STATUS] please wait! calibrating...")
-            elif self.num_frames == 29:
-                print("[STATUS] calibration successfull...")
-            self.num_frames += 1
-        else:
-
-            hand = self.segment(gray)
-            if hand is not None:
-                (thresholded, segmented) = hand
-                cv2.drawContours(clone, [segmented + (right, top)], -1, (0, 0, 255))
-                fingers = self.count(thresholded, segmented)
-                thresholded = imutils.resize(thresholded, height=265)
-                thresholded = cv2.cvtColor(thresholded, cv2.COLOR_GRAY2BGR)
-                cv2.putText(number, str(fingers), (125,150), cv2.FONT_HERSHEY_DUPLEX, 3, (255,255,255), 2)
-
-        cv2.rectangle(clone, (left, top), (right, bottom), (0,255,0), 2)
-        
-        vertical_concat = np.concatenate((thresholded, number), axis=0)
-        final = np.concatenate((clone, vertical_concat), axis=1)
+            vertical_concat = np.concatenate((thresholded, number), axis=0)
+            final = np.concatenate((clone, vertical_concat), axis=1)
+        except:
+            final = np.zeros((530,1001, 3), np.uint8)
 
         ret, jpeg = cv2.imencode('.jpg', final)
         return jpeg.tobytes()
