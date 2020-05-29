@@ -42,14 +42,17 @@ The process of counting the fingers has five intermediate steps
     ```
       $ git clone https://github.com/abhishekbvs/Gesture-Detection.git
       $ cd Gesture-Detection
+    ```
+4. Create a python 3 virtualenv, and activate the environment.
+    ```
       $ virtualenv -p python3 .
       $ source bin/activate
     ```
-4. Install the dependencies from `requirements.txt`
+5. Install the dependencies from `requirements.txt`
     ```
       $ pip install -r requirements.txt
     ```
-5. Run the application
+6. Run the FLask application
     ```
       $ python app.py
     ```
