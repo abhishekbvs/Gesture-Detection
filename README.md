@@ -13,7 +13,7 @@ The two essential parts of this project are
 2. Counting the number of fingers from segmented region
 
 ### 1. Segmentation of the Hand Region  
-One of the efficient methods to separate foreground from background is using the concept of running averages. More about running avergaes can be found over [here](http://opencvpython.blogspot.com/2012/07/background-extraction-using-running.html). The system looks over a particular number of frames of the background and runs the average of those. The background is figured out with this average.  
+One of the efficient methods to separate foreground from background is using the concept of running averages. More about running averages can be found over [here](http://opencvpython.blogspot.com/2012/07/background-extraction-using-running.html). The system looks over a particular number of frames of the background and runs the average of those. The background is figured out with this average.  
 
 When the hand is brought inside the frame after the calibration(once the application starts, it takes 30 sec to calibrate itself according to the background), absolute difference between the background model and the current frame is obtained resulting in a single foreground object - the hand. This method so far as a whole, is known as Background subtraction.
 
@@ -27,7 +27,14 @@ The process of counting the fingers has five intermediate steps
   + Constructing a cricle around the hand with centre of the palm as origin.
   + Bitwise AND between the thresholded hand image and the circle(also known as ROI - Region Of Interest)  
 
-## Usage
+## Installation
+
+### Pre-requisites
+  + OpenCV
+  + Python3
+  + Flask
+
+Clone the repository using 'https://github.com/abhishekbvs/Gesture-Detection.git'
 
 ## Team
 
