@@ -40,7 +40,7 @@ Clone the repository using 'https://github.com/abhishekbvs/Gesture-Detection.git
 
   + [Bhanu Prakash](https://github.com/BhanuPrakashNani/)
   + [Abhishek BVS](https://github.com/abhishekbvs/)
-  + [Bala Sai Praneeth]()
+  + [Bala Sai Praneeth](https://github.com/PraneethVankayala)
 
 ## Future Scope  
 This project can be extended to understand the gestures and execute commands based on the gestures.
