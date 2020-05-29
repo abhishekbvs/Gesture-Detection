@@ -35,7 +35,24 @@ The process of counting the fingers has five intermediate steps
   + Python3
   + Flask
 
-Clone the repository using 'https://github.com/abhishekbvs/Gesture-Detection.git'
+### Installation Instructions
+1. Install Python3 and pip
+2. Install `virtualenv` and add it to your terminal path.
+3. Clone the repository and create the virtual environment
+    ```
+      $ git clone https://github.com/abhishekbvs/Gesture-Detection.git
+      $ cd Gesture-Detection
+      $ virtualenv -p python3 .
+      $ source bin/activate
+    ```
+4. Install the dependencies from `requirements.txt`
+    ```
+      $ pip install -r requirements.txt
+    ```
+5. Run the application
+    ```
+      $ python app.py
+    ```
 
 ## Team
 
