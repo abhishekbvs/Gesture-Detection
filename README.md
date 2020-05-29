@@ -31,6 +31,10 @@ The process of counting the fingers has five intermediate steps
 
 ## Team
 
+  + [Bhanu Prakash](https://github.com/BhanuPrakashNani/)
+  + [Abhishek BVS](https://github.com/abhishekbvs/)
+  + [Bala Sai Praneeth]()
+
 ## Future Scope  
 This project can be extended to understand the gestures and execute commands based on the gestures.
 
