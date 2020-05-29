@@ -25,7 +25,8 @@ The process of counting the fingers has five intermediate steps
   + Computing the most extreme points in the convex hull
   + Finding the center of the palm using t he extreme points.
   + Constructing a cricle around the hand with centre of the palm as origin.
-  + Bitwise AND between the thresholded hand image and the circle(also known as ROI - Region Of Interest)  
+  + Bitwise AND between the thresholded hand image and the circle(also known as ROI - Region Of Interest) 
+  ![Steps](https://github.com/abhishekbvs/Gesture-Detection/blob/master/image1.png)
 
 ## Installation
 
